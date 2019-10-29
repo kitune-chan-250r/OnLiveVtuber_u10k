@@ -1,0 +1,128 @@
+.contentbox {
+	background-color: #1f1f1f;
+	margin: 0;
+	margin-bottom: 10px;
+	padding: 0;
+}
+/*一部padding,margineを削除*/
+.contentbox > .col,
+.contentbox > [class*="col-"]{
+	margin: 0;
+	padding: 0;
+}
+.content,
+.filter-text{
+	color: #ffffff;
+}
+
+#detail {
+	vertical-align: top;
+}
+
+#img {
+	text-align: center;
+}
+
+
+body {
+	background-color: #1f1f1f;
+}
+
+.title-text {
+	word-break: break-word;
+	color: #ffffff;
+}
+
+.errmsg {
+	background-color: #1f1f1f;
+	text-align: center;
+	color: #ffffff;
+}
+
+
+.title-text:link{color: #ffff; text-decoration: none;}
+.title-text:visited{color: #ffff; text-decoration: none;}
+.title-text:active{color: #ffff; text-decoration: none;}
+.title-text:hover{color: #ffff; text-decoration: none;}
+
+.name {
+	color: #aaaaaa;
+}
+
+@media (min-width: 992px) {
+	.sidebar {
+		background-color: #282828;
+		height: 100vh;
+		position: sticky;
+		top: 0;
+	}
+
+	#r{background-color:#161616;}
+	#l{background-color:#282828;}
+}
+
+nav {
+	text-align: center;
+	color: #ffffff;
+	background-color:#282828;
+}
+
+#text-white {
+	color: #ffffff;
+}
+
+.logo,
+.filter{
+	text-align: center;
+}
+
+.dropdown-toggle,
+.dropdown-menu.show {
+	background-color:#3e3e3e;
+	text-align: center;
+}
+
+
+#menu-text#menu-text#menu-text#menu-text{
+	color: #ffffff;
+}
+
+.menu-dropdown{
+	margin-top: 0px;
+	margin-bottom: 0px;
+	background-color:#282828;
+}
+
+.dropdown{
+	margin-top: 10px;
+	margin-bottom: 10px;
+}
+
+.filter-text{
+	color: #ffffff;
+	text-align: center;
+}
+
+.btnleft{
+	text-align: center;
+	margin: 0;
+	padding: 0;
+	margin-top: 13px;
+}
+
+.btncolor{
+	background-color: #3e3e3e; 
+	text-transform: none !important;
+}
+
+#all{
+	background-color: #1f1f1f;
+}
+
+.d{
+	text-align: center;
+}
+
+.comment{
+	color: #8899a6;
+}

@@ -1,17 +1,18 @@
 {% extends 'base.html' %}
 {% block content %}
-  <div class="container-fluid">
+<div class="container-fluid">
     <div class="row">
       <!-- <div class="col-lg-3 hidden-xs">
       </div> -->
       <div class="col-lg-3 hidden-md sidebar" id='l'>
       </div>
       <div class="col-lg-6">
+        <p class="comment">＞対応Vtuber一覧　※調整中</p>
+
         <br>
-        <br>
-        {% if livedata %}
-          {% for d in livedata reversed %}
-            {% include "content_box.html" %}
+        {% if vtuber %}
+          {% for v in vtuber %}
+            {% include "v_content.html" %}
           {% endfor %}
         {% else %}
           <p class='errmsg'>配信してるVtuberはいませんでした</p>
@@ -22,10 +23,17 @@
         <div class="container">
           <br>
           <br>
-            {% include "sidbar_filter.html" %}
+          {% include "sidbar_filter.html" %}
+
+          <br>
+          <br>
+          <div class="d d-none d-sm-block">
+            <a href="about_this_page" class="title-text">About this site</a>
+          </div>
         </div>
-        </div>
+        
       </div>
+    
     </div>
-  </div>
+</div>
 {% endblock %}
