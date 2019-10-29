@@ -12,7 +12,10 @@
 		<link rel="stylesheet" href="{% static 'main.css' %}">
 		<meta charset="utf-8">
 		<meta name="viewport" content="width=device-width,initial-scale=1">
-		<link href="https://cdnjs.cloudflare.com/ajax/libs/mdbootstrap/4.5.16/css/mdb.min.css" rel="stylesheet">
+		 <!-- Font Awesome -->
+  		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+  		<!-- Material Design for Bootstrap -->
+  		<link href="https://cdnjs.cloudflare.com/ajax/libs/mdbootstrap/4.5.16/css/mdb.min.css" rel="stylesheet">
 		<meta name="description" content="youtubeで今、生放送中のVtuberをリスト化！" />
 
 		<!-- Global site tag (gtag.js) - Google Analytics
@@ -90,5 +93,16 @@
 	<body>
 	    {% block content %}
 	    {% endblock %}
+
+	      <!-- jQuery -->
+		  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+		  <!-- Popper.js -->
+		  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.6/umd/popper.min.js"></script>
+		  <!-- Material Design for Bootstrap -->
+		  <script src="https://cdnjs.cloudflare.com/ajax/libs/mdbootstrap/4.5.16/js/mdb.min.js"></script>
+
+		  <script>
+		    new WOW().init();
+		  </script>
 	</body>
 </html>

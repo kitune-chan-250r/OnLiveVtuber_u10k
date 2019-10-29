@@ -7,7 +7,7 @@
       <div class="col-lg-3 hidden-md sidebar" id='l'>
       </div>
       <div class="col-lg-6">
-        <p class="comment">＞対応Vtuber一覧　※調整中</p>
+        <p class="comment">＞対応Vtuber一覧　※調整中 <i class="fas fa-search"></i></p>
 
         <br>
         {% if vtuber %}
@@ -24,6 +24,15 @@
           <br>
           <br>
           {% include "sidbar_filter.html" %}
+
+          <div>
+            <form class="form-inline" method="get">
+              <input class="form-control form-control-sm mr-3 w-75" type="text" placeholder="Search"
+                aria-label="Search Vtuber" name="search_vtuber">
+              <i class="fas fa-search" aria-hidden="false"><input type="submit" name=""></i>
+
+            </form>
+          </div>
 
           <br>
           <br>

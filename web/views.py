@@ -65,7 +65,17 @@ def index_old(request):
     return render(request, 'index.html', data)
 
 def vtuber(request):
-    json_data = requests.get(endpoint).json()
-    data = {}
-    data['vtuber'] = json_data
+    search_word = request.GET.get('search_vtuber')
+    url = endpoint + 'vtuber'
+    if search_word is not None:
+        url += '/?search_query={0}'.format(search_word)
+    print(url)
+    apidata = requests.get(url).json()
+    vtuber = []
+    for v in apidata:
+        vtuber.append({'uid': v['uid'], 'name': v['liver_name'], 'gender':v['gender']})
+    
+
+    data = { 'vtuber':vtuber
+    }
     return render(request, 'vtuber_all.html', data)
