@@ -1,0 +1,13 @@
+<p>index.html</p>
+
+
+<form action="" method="get">
+    <label>Vtuber検索:<input type="search" size="20" name="search_vtuber"></label>
+    <input type="submit" value="送信">
+
+    {% if vtuber %}
+        {% for d in vtuber reversed %}
+            <p>uid: {{ d.uid }}, name: {{ d.name }}, gender:{{ d.gender }}</p>
+        {% endfor %}
+    {% endif %}
+</form>

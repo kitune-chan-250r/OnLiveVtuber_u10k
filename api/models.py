@@ -13,3 +13,9 @@ class On_Live(models.Model):
     start_time = models.DateTimeField(auto_now_add=True)
     live_title = models.CharField(max_length=100)
     live_url = models.CharField(max_length=100)
+
+
+class Request_vtuber(models.Model):
+    uid = models.CharField(max_length=50, primary_key=True, unique=True)
+    liver_name = models.CharField(max_length=100)
+    gender = models.CharField(max_length=20)
