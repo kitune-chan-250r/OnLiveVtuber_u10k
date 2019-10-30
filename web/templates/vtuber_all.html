@@ -7,7 +7,11 @@
       <div class="col-lg-3 hidden-md sidebar" id='l'>
       </div>
       <div class="col-lg-6">
-        <p class="comment">＞対応Vtuber一覧　※調整中 <i class="fas fa-search"></i></p>
+        <p class="comment">＞対応Vtuber一覧　※調整中 <a href="vtuber"><i class="fas fa-sync-alt"></i></a>
+        {% if search_word != None %}
+            <div><a href="vtuber" class="title-text"><span class="badge badge-pill badge-light">{{ search_word }}<i class="far fa-times-circle"></i></span></a></div>
+        {% endif %}
+        </p>
 
         <br>
         {% if vtuber %}
@@ -15,23 +19,33 @@
             {% include "v_content.html" %}
           {% endfor %}
         {% else %}
-          <p class='errmsg'>配信してるVtuberはいませんでした</p>
+          <p class='errmsg'>見つかりませんでした</p>
         {% endif %}
       </div>
 
       <div class="col-lg-3 hidden-md sidebar" id='r'>
-        <div class="container">
+        <div class="container sidebar-right">
           <br>
           <br>
           {% include "sidbar_filter.html" %}
 
           <div>
-            <form class="form-inline" method="get">
-              <input class="form-control form-control-sm mr-3 w-75" type="text" placeholder="Search"
-                aria-label="Search Vtuber" name="search_vtuber">
-              <i class="fas fa-search" aria-hidden="false"><input type="submit" name=""></i>
+            <!-- search 
+            <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">-->
+            <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.5.0/css/all.css" integrity="sha384-B4dIYHKNBt8Bc12p+WXckhzcICo0wtJAoU8YZTY5qE0Id1GSseTk6S+L3BlXeVIU" crossorigin="anonymous">
 
-            </form>
+            <div class="container h-100">
+              <div class="d-flex justify-content-center h-100">
+                <form class="form-inline" method="get">
+                <div class="searchbar">
+                  <input class="search_input" type="text" placeholder="Search Vtuber" name="search_vtuber">
+                  <button class="search_icon" type="submit"><i class="fas fa-search"></i></button>
+                </div>
+                </form>
+              </div>
+              
+            </div>
+            
           </div>
 
           <br>
