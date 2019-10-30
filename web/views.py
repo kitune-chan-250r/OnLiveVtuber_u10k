@@ -1,10 +1,9 @@
 from django.shortcuts import render
-import requests, json
+import requests, json, re, time, bs4
 from datetime import timedelta
 from datetime import datetime
 from dateutil.parser import parse
 from pytz import timezone
-import re, time
 
 # Create your views here.
 endpoint = 'http://localhost:8000/api/'
@@ -30,6 +29,35 @@ def deformed(start):
     else:
         return '約{}分'.format(minutes)
 
+#uidからアイコンと表示名を取得
+def img_src(cid):
+    youtube = "https://www.youtube.com/channel/" + cid
+
+    hed = {'Accept-Language': 'ja'}
+    html_data = requests.get(youtube, headers=hed)
+
+    parsed = bs4.BeautifulSoup(html_data.content, "html.parser")
+
+    try:
+        name = parsed.find('h2', class_='epic-nav-item-heading').text
+        icon_src = parsed.find('img', class_="channel-header-profile-image").get('src')
+    except AttributeError:
+        return False, False
+    else:
+        return name.strip(), icon_src.replace('s100', 's288')
+
+#uidの登録があるか確認
+def conf_cid(cid):
+    url = endpoint + 'vtuber'
+    apidata = requests.get(url).json()
+    uids = [x['uid'] for x in apidata if x['uid'] == cid]
+    if len(uids) < 1:
+        return True
+    else:
+        return False
+    
+
+
 def index(request):
     json_data = requests.get(endpoint + 'onlive/').json()
     data = {}
@@ -45,23 +73,6 @@ def index(request):
 
     data['livedata'] = livedata
     print(data)
-    return render(request, 'index.html', data)
-
-
-def index_old(request):
-    search_word = request.GET.get('search_vtuber')
-    endpoint += 'vtuber'
-    if search_word is not None:
-        endpoint += '/?search_query={0}'.format(search_word)
-    print(endpoint)
-    apidata = requests.get(endpoint).json()
-    vtuber = []
-    for v in apidata:
-        vtuber.append({'uid': v['uid'], 'name': v['liver_name'], 'gender':v['gender']})
-    
-
-    data = { 'vtuber':vtuber
-    }
     return render(request, 'index.html', data)
 
 def vtuber(request):
@@ -84,4 +95,37 @@ def vtuber(request):
 
     return render(request, 'vtuber_all.html', data)
 
+"""def conf_cid(id):
+    
+    return 
+"""
 
+def request_page(request):
+    data = {}
+    conf = request.GET.get('conf_vtuber')
+    if conf is not None and conf != "":
+        res = conf_cid(conf)
+        data['conf_res'] = res
+        if res != False:
+            name, src = img_src(conf)
+            if name != False:
+                data['src'] = src
+                data['name'] = name
+                data['uid'] = conf
+            else:
+               data['conf_res'] = False 
+        data['status'] = True
+
+
+    name = request.GET.get('name')
+    uid = request.GET.get('uid')
+    src = request.GET.get('src')
+    gender = request.GET.get('gen')
+    twitter = request.GET.get('twitter_id')
+
+    print(name, uid, src, gender, twitter)
+
+    if uid is not None and src != "":
+        return render(request, 'req_success.html')
+
+    return render(request, 'request.html', data)

@@ -68,6 +68,10 @@ button{
 
 	#r{background-color:#161616;}
 	#l{background-color:#282828;}
+
+	.card-columns {
+    	column-count: 4 !important; 
+	}
 }
 
 nav {
@@ -155,8 +159,6 @@ body,html{
 }*/
 
 .searchbar{
-    margin-bottom: auto;
-    margin-top: auto;
     height: 60px;
     background-color: #353b48;
     border-radius: 30px;
@@ -195,4 +197,31 @@ body,html{
     align-items: center;
     border-radius: 50%;
     color:white;
+}
+
+/*Card*/
+.wrap{
+	max-width: 1000px;
+ 	margin: 50px auto;
+}
+
+.card_top_img{
+  width: 100%;
+}
+
+.card-columns {
+    column-count: 1;
+}
+
+.row-eq-height{
+	display: flex;
+	flex-wrap: wrap;
+}
+
+.fa-check-circle{
+	color: green;
+}
+
+.menu{
+	height:24px;
 }

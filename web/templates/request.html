@@ -1,0 +1,84 @@
+{% extends 'base.html' %}
+{% block content %}
+	<div class="container-fluid">
+    <div class="row">
+      <!-- <div class="col-lg-3 hidden-xs">
+      </div> -->
+      <div class="col-lg-3 hidden-md sidebar" id='l'>
+      	<!--left-->
+      </div>
+      <div class="col-lg-6">
+      	<!--middle-->
+        <br>
+        <br>
+        <!--message-->
+        {% if status == None %}
+			<div class="alert alert-dark" role="alert">
+		  		<p>登録申請したいチャンネルのチャンネルIDを入力してください</p>
+		  		<p>https://www.youtube.com/channel/UC1opHUrw8rvnsadT-iGp7Cg　この場合UCで始まりgで終わる部分がIDになります。"/playlists"や"?"から始まる部分がついている場合は取り除いてください。登録できない場合があります。</p>
+			</div>
+		{% endif %}
+
+		{% if conf_res == False %}
+			<div class="alert alert-danger" role="alert">
+		  		<p>既に登録されているかIDを間違えている可能性があります</p>
+		  		<p>https://www.youtube.com/channel/UC1opHUrw8rvnsadT-iGp7Cg　この場合UCで始まりgで終わる部分がIDになります。"/playlists"や"?"から始まる部分がついている場合は取り除いてください。登録できない場合があります。</p>
+			</div>
+		{% endif %}
+
+		<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.5.0/css/all.css" integrity="sha384-B4dIYHKNBt8Bc12p+WXckhzcICo0wtJAoU8YZTY5qE0Id1GSseTk6S+L3BlXeVIU" crossorigin="anonymous">
+
+		<div class="container">
+		  <div class="d-flex justify-content-center">
+		    <form class="form-inline" method="get">
+		    <div class="searchbar">
+		      <input class="search_input" type="text" placeholder="Search Vtuber" name="conf_vtuber">
+		      <button class="search_icon" type="submit"><i class="fas fa-search"></i></button>
+		    </div>
+		    </form>
+		  </div>
+		</div>
+
+		<!--success-->
+		{% if conf_res == True %}
+			<div class="card mx-auto" style="width:13rem; margin-bottom:20px;margin-top:20px;">
+			  	<img class="card-img-top" src="{{ src }}" alt="Card image cap" width="200px" height="200px" class="rounded-circle">
+			  	<div class="card-body">
+			    	<p class="card-title">{{ name }} <i class="fas fa-check-circle lg"></i></p>
+			 	</div>
+			</div>
+
+			<form class="mx-auto" method="get" style="width:15rem; margin-bottom:30px;">
+				<div class="md-form mx-auto">
+			        <input type="text" id="materialLoginFormEmail" class="form-control" name="twitter_id" required pattern="^[0-9A-Za-z]+$">
+			        <label for="materialLoginFormEmail">Twitter id (not include @)</label>
+			    </div>
+			    <div>
+				    <select class="browser-default custom-select" name="gen" required>
+					  <option value="" disabled selected>Choose your option</option>
+					  <option value="man">Man</option>
+					  <option value="woman">Woman</option>
+					  <option value="etc">Etc</option>
+					</select>
+				</div>
+				<input type="hidden" name="uid" value="{{ uid }}">
+				<input type="hidden" name="name" value="{{ name }}">
+				<input type="hidden" name="src" value="{{ src }}">
+
+				<button class="btn btn-outline-info btn-rounded btn-block my-4 waves-effect z-depth-0" type="submit">Send request</button>
+			</form>
+		{% endif %}
+      </div>
+
+      <div class="col-lg-3 hidden-md sidebar" id='r'>
+      	<!--right-->
+        <div class="container sidebar-right">
+          <br>
+          <br>
+            {% include "sidbar_filter.html" %}
+        </div>
+        </div>
+      </div>
+    </div>
+  </div>
+{% endblock %}

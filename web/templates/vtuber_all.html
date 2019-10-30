@@ -2,26 +2,31 @@
 {% block content %}
 <div class="container-fluid">
     <div class="row">
-      <!-- <div class="col-lg-3 hidden-xs">
-      </div> -->
+      <!-- <div class="col-lg-3 hidden-xs"></div> -->
       <div class="col-lg-3 hidden-md sidebar" id='l'>
       </div>
       <div class="col-lg-6">
-        <p class="comment">＞対応Vtuber一覧　※調整中 <a href="vtuber"><i class="fas fa-sync-alt"></i></a>
+        <p class="comment">＞対応Vtuber一覧　※掲載申請は<a href="request" class="title-text">こちら</a>から<a href="vtuber"><i class="fas fa-sync-alt"></i></a>
         {% if search_word != None %}
             <div><a href="vtuber" class="title-text"><span class="badge badge-pill badge-light">{{ search_word }}<i class="far fa-times-circle"></i></span></a></div>
         {% endif %}
         </p>
 
         <br>
-        {% if vtuber %}
-          {% for v in vtuber %}
-            {% include "v_content.html" %}
-          {% endfor %}
-        {% else %}
-          <p class='errmsg'>見つかりませんでした</p>
-        {% endif %}
-      </div>
+          <div class="container-fluid">
+            <div class="row">
+              <div class="wrap card-columns row-eq-height">
+              {% if vtuber %}
+                {% for v in vtuber %}
+                    {% include "card.html" %}
+                  {% endfor %}
+                {% else %}
+                <p class='errmsg'>見つかりませんでした</p>
+                {% endif %}
+              </div>
+            </div>
+          </div>
+        </div>
 
       <div class="col-lg-3 hidden-md sidebar" id='r'>
         <div class="container sidebar-right">
@@ -43,7 +48,6 @@
                 </div>
                 </form>
               </div>
-              
             </div>
             
           </div>
