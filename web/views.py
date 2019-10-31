@@ -158,17 +158,21 @@ def request_manager(request):
 
 def accept_req(request):
     twitter = request.GET.get('twitter_id')
-    
+    uid = request.GET.get('uid')
 
-    vtuber = {'uid':request.GET.get('uid'),
+    vtuber = {'uid':uid,
             'liver_name':request.GET.get('name'),
             'gender':request.GET.get('gen'),
             'src':request.GET.get('src')
     }
 
-    requests.post(endpoint + 'vtuber', vtuber)
-
-    print(name, uid, src, gender, twitter)
+    requests.post(endpoint + 'vtuber/', vtuber)
+    requests.delete(endpoint + 'req/' + uid + '/')
     
     return redirect('http://localhost:8000/reqmanag?pass=aquamanji')
 
+
+def deny_req(request):
+    uid = request.GET.get('uid')
+    requests.delete(endpoint + 'req/' + uid + '/')
+    return redirect('http://localhost:8000/reqmanag?pass=aquamanji')
