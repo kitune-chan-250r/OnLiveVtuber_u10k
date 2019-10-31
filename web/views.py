@@ -6,7 +6,8 @@ from dateutil.parser import parse
 from pytz import timezone
 
 # Create your views here.
-endpoint = 'http://localhost:8000/api/'
+#endpoint = 'http://localhost:8000/api/'
+endpoint = 'https://onlive-vtuber-u10k.herokuapp.com/api/'
 
 #str型 timeを受け取り'%Y-%m-%d %H:%M:%S'のdatetime.timedeltを返す
 def time_jst(time):
@@ -127,7 +128,7 @@ def request_page(request):
     print(name, uid, src, gender, twitter)
 
     if uid is not None and src != "":
-        req_url = 'http://localhost:8000/api/req/'
+        req_url = 'https://onlive-vtuber-u10k.herokuapp.com/api/req/'
         q = {'uid': uid, 'liver_name': name,
         'gender': gender, 'twitter_id': twitter, 'src': src}
         status = requests.post(req_url, q)
@@ -139,7 +140,7 @@ def request_page(request):
 def request_manager(request):
     oauth = request.GET.get('pass')
     if oauth is not None and oauth == "aquamanji":
-        url = 'http://localhost:8000/api/req/'
+        url = 'https://onlive-vtuber-u10k.herokuapp.com/api/req/'
         apidata = requests.get(url).json()
 
         request_obj = []
@@ -169,10 +170,10 @@ def accept_req(request):
     requests.post(endpoint + 'vtuber/', vtuber)
     requests.delete(endpoint + 'req/' + uid + '/')
     
-    return redirect('http://localhost:8000/reqmanag?pass=aquamanji')
+    return redirect('https://onlive-vtuber-u10k.herokuapp.com/reqmanag?pass=aquamanji')
 
 
 def deny_req(request):
     uid = request.GET.get('uid')
     requests.delete(endpoint + 'req/' + uid + '/')
-    return redirect('http://localhost:8000/reqmanag?pass=aquamanji')
+    return redirect('https://onlive-vtuber-u10k.herokuapp.com/reqmanag?pass=aquamanji')
