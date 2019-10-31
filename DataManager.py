@@ -25,7 +25,7 @@ async def main(uid):
                 result = {'uid': uid, 'status': False}
     return result
 
-BASE_URL = 'http://localhost:8000/api/'
+BASE_URL = 'https://onlive-vtuber-u10k.herokuapp.com/api/'
 
 all_liver = requests.get(BASE_URL + 'vtuber/').json()
 on_liver = requests.get(BASE_URL + 'onlive/').json()
