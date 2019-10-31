@@ -35,3 +35,17 @@ class OnLiveViewSet(viewsets.ModelViewSet):
         if liver is not None:
             queryset = queryset.filter(uid__liver_name__icontains=liver)
         return queryset
+
+
+class RequestViewSet(viewsets.ModelViewSet):
+    queryset = Request_vtuber.objects.all()
+    serializer_class = RequestSerializer
+    filter_fields = ('gender',)
+
+    def get_queryset(self):
+        queryset = Request_vtuber.objects.all()
+        search_query = self.request.query_params.get('search_query', None)
+        if search_query is not None:
+            queryset = queryset.filter(Q(liver_name__icontains=search_query) |
+                                       Q(uid__icontains=search_query))
+        return queryset

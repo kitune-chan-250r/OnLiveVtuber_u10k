@@ -6,6 +6,7 @@ class Vtuber(models.Model):
     uid = models.CharField(max_length=50, primary_key=True, unique=True)
     liver_name = models.CharField(max_length=100)
     gender = models.CharField(max_length=20)
+    src = models.CharField(max_length=200)
 
 
 class On_Live(models.Model):
@@ -19,3 +20,5 @@ class Request_vtuber(models.Model):
     uid = models.CharField(max_length=50, primary_key=True, unique=True)
     liver_name = models.CharField(max_length=100)
     gender = models.CharField(max_length=20)
+    twitter_id = models.CharField(max_length=100)
+    src = models.CharField(max_length=200)

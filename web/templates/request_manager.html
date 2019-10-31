@@ -1,0 +1,38 @@
+{% extends 'base.html' %}
+{% block content %}
+  <div class="container-fluid">
+    <div class="row">
+      <!-- <div class="col-lg-3 hidden-xs">
+      </div> -->
+      <div class="col-lg-3 hidden-md sidebar" id='l'>
+      </div>
+      <div class="col-lg-6">
+        <br>
+
+        <div>
+          <h4>
+            <span class="badge badge-pill badge-success">{{ len }}
+            </span>
+          </h4>
+        </div>
+
+        <br>
+        {% if request_obj %}
+          {% for d in request_obj reversed %}
+            {% include "request_card.html" %}
+          {% endfor %}
+        {% else %}
+          <p class='errmsg'>アイテムなし</p>
+        {% endif %}
+      </div>
+
+      <div class="col-lg-3 hidden-md sidebar" id='r'>
+        <div class="container sidebar-right">
+          <br>
+          <br>
+        </div>
+        </div>
+      </div>
+    </div>
+  </div>
+{% endblock %}

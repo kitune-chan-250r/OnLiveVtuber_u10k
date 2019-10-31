@@ -1,4 +1,4 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 import requests, json, re, time, bs4
 from datetime import timedelta
 from datetime import datetime
@@ -89,7 +89,8 @@ def vtuber(request):
     apidata = requests.get(url).json()
     vtuber = []
     for v in apidata:
-        vtuber.append({'uid': v['uid'], 'name': v['liver_name'], 'gender':v['gender']})
+        vtuber.append({'uid': v['uid'], 'name': v['liver_name'],
+                     'gender':v['gender'], 'src': v['src']})
     
     data['vtuber'] = vtuber
 
@@ -126,6 +127,48 @@ def request_page(request):
     print(name, uid, src, gender, twitter)
 
     if uid is not None and src != "":
-        return render(request, 'req_success.html')
+        req_url = 'http://localhost:8000/api/req/'
+        q = {'uid': uid, 'liver_name': name,
+        'gender': gender, 'twitter_id': twitter, 'src': src}
+        status = requests.post(req_url, q)
+        if status.status_code == 201:
+            return render(request, 'req_success.html')
 
     return render(request, 'request.html', data)
+
+def request_manager(request):
+    oauth = request.GET.get('pass')
+    if oauth is not None and oauth == "aquamanji":
+        url = 'http://localhost:8000/api/req/'
+        apidata = requests.get(url).json()
+
+        request_obj = []
+
+        for i in apidata:
+            request_obj.append({'uid': i['uid'],
+                             'name': i['liver_name'],
+                             'twitter': i['twitter_id'],
+                             'gender': i['gender'],
+                             'src': i['src']})
+        data = {'request_obj': request_obj,
+                'len': len(apidata)}
+        return render(request, 'request_manager.html', data)
+    else:
+        return render(request, '404.html')
+
+def accept_req(request):
+    twitter = request.GET.get('twitter_id')
+    
+
+    vtuber = {'uid':request.GET.get('uid'),
+            'liver_name':request.GET.get('name'),
+            'gender':request.GET.get('gen'),
+            'src':request.GET.get('src')
+    }
+
+    requests.post(endpoint + 'vtuber', vtuber)
+
+    print(name, uid, src, gender, twitter)
+    
+    return redirect('http://localhost:8000/reqmanag?pass=aquamanji')
+
