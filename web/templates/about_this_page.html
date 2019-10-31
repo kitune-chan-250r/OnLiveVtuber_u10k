@@ -1,0 +1,29 @@
+{% extends 'base.html' %}
+{% block content %}
+  <div class="container-fluid">
+    <div class="row">
+      <!-- <div class="col-lg-3 hidden-xs">
+      </div> -->
+      <div class="col-lg-3 hidden-md sidebar" id='l'>
+      </div>
+      <div class="col-lg-6">
+        <br>
+        <h4 class="title-text">このサイトについて</h4>
+          <p class="title-text">このサイトはVtuberの放送をBGMとしてはしごしているファンのためのサイトです。</p>
+          <p class="title-text">Vtuberの配信状況について自前のAPIから返されたデータを活用してこのサイトのコンテンツを作成しています、
+            その仕様上youtubeの反映状況などから最大で約15分のタイムラグがあります、そのため推しの放送の確認する用途には向きません、あくまでも放送の少ない時間帯にだれか放送してないかな
+            ～程度に確認するサイトとして開発を進めています。何かご意見、ご要望（対応してほしいVtuberなど）ありましたらTwitterのリプかDMまで。</p>
+          <br>
+          <p class='title-text d'>developed by あくあクルー　<a href="https://twitter.com/kitune_chan250r">@kitune_chan250r</a></p>
+      </div>
+
+      <div class="col-lg-3 hidden-md sidebar" id='r'>
+        <div class="container">
+            <div class="col-lg-12 center-block">
+                <button type="button" class="btncolor btn btn-primaly d-none d-sm-block" onclick="location.href='/'">ホームに戻る</button>
+            </div>
+        </div>
+      </div>
+    </div>
+  </div>
+{% endblock %}

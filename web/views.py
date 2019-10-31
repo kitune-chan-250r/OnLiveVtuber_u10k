@@ -177,3 +177,6 @@ def deny_req(request):
     uid = request.GET.get('uid')
     requests.delete(endpoint + 'req/' + uid + '/')
     return redirect('https://onlive-vtuber-u10k.herokuapp.com/reqmanag?pass=aquamanji')
+
+def about_this_page(request):
+    return render(request, 'about_this_page.html')

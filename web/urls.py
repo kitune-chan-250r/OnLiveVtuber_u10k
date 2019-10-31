@@ -9,4 +9,5 @@ urlpatterns = [
     path('reqmanag', request_manager),
     path('accept', accept_req, name='accept'),
     path('deny', deny_req, name='deny'),
+    path('about_this_page', about_this_page, name='about_this_page'),
 ]
