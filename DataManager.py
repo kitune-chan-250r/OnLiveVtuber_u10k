@@ -44,7 +44,7 @@ res = [d.result() for d in done] #結果
 for r in tqdm(res):
     #1つ前の更新で放送中ではなかったが返ってきたステータスが放送中だった場合
     if r['status'] is not False and r['uid'] not in on_livers:
-        data = {'uid': r['uid'], 'live_title': r['title'],
+        data = {'uid_serializer': r['uid'], 'live_title': r['title'],
                 'live_url': 'https://www.youtube.com/watch?v='+r['watch']}
         #on_liveに追加
         print(data)
@@ -56,7 +56,7 @@ for r in tqdm(res):
         title = [l['live_title'] for l in on_liver if l['uid']['uid'] == r['uid']]
         if r['title'] != title[0]:
             res = requests.delete(BASE_URL+'onlive/{0}'.format(r['uid']))
-            data = {'uid': r['uid'], 'live_title': r['title'],
+            data = {'uid_serializer': r['uid'], 'live_title': r['title'],
                     'live_url': 'https://www.youtube.com/watch?v='+r['watch']}
             res = requests.post(BASE_URL+'onlive/', data)
     
