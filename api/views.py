@@ -23,7 +23,7 @@ class VtuberViewSet(viewsets.ModelViewSet):
 
 class OnLiveViewSet(viewsets.ModelViewSet):
     queryset = On_Live.objects.all()
-    serializer_class = OnLiveSerializer
+    serializer_class = OnLive_POST_Serializer
     filter_fields = ('uid',)
 
     def get_queryset(self):
