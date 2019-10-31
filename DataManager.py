@@ -63,3 +63,4 @@ for r in tqdm(res):
     #1つ前の更新で放送中で返ってきたステータスが放送中ではなかった場合
     elif r['status'] is False and r['uid'] in on_livers:
         res = requests.delete(BASE_URL+'onlive/{0}'.format(r['uid']))
+    print(res)
